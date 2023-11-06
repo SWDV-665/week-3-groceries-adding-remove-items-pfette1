@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Grocery
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,60 +15,29 @@
 
   <ion-list [inset]="true">
 
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let item of items; let i = index">
       <ion-item>
-        <ion-label>Milk</ion-label>
-        <p>1</p>
+        <ion-label>{{item.name}}</ion-label>
+        <p>{{item.quantity}}</p>
       </ion-item>
 
       <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
+        <ion-item-option color="danger" (click)="removeItem(item, i)"> Delete</ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
 
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Bread</ion-label>
-        <p>2</p>
-      </ion-item>
-
-      <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Apples</ion-label>
-        <p>5</p>
-      </ion-item>
-
-      <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Oranges</ion-label>
-        <p>4</p>
-      </ion-item>
-
-      <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item>
-        <ion-label>Bananas</ion-label>
-        <p>6</p>
-      </ion-item>
-
-      <ion-item-options>
-        <ion-item-option color="danger">Delete</ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
   </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button id="present-alert" (click)="addItem()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-alert trigger="present-alert"
+             header="Add Item"
+             subHeader="Please enter item..."
+             [buttons]="alertButtons"
+             [inputs]="alertInputs"></ion-alert>
 
 </ion-content>
