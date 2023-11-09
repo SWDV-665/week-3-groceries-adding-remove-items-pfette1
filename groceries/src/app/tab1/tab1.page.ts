@@ -45,25 +45,25 @@ export class Tab1Page {
   public alertInputs = [
     {
       name: 'name',
-      placeholder: 'Name',
+      placeholder: 'Name'
     },
     {
       name: 'quantity',
       type: 'number',
       placeholder: 'Quantity',
       min: 1,
-      max: 100,
+      max: 100
     }
   ];
 
   constructor(private toastController: ToastController) {}
 
   async removeItem(item: any, index: number) {
-    console.log(item, index);
     const toast = await this.toastController.create({
-      message: index + ' successfully removed',
+      message: item.name + ' successfully removed',
       duration: 1500,
       position: 'bottom',
+      color: 'success',
     });
 
     await toast.present();
@@ -73,6 +73,10 @@ export class Tab1Page {
 
   addItem() {
     
+  }
+
+  dismiss() {
+    console.log(this.alertInputs);
   }
 
 }
